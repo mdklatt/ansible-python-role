@@ -1,0 +1,3 @@
+## Defaults for the python role.
+##
+python_debug: False

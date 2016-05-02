@@ -1,0 +1,6 @@
+## Test playbook for the python role.
+##
+- hosts: localhost
+
+  roles:
+  - role: python
