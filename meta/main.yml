@@ -1,14 +1,13 @@
 ## Metadata for the python role.
 ##
-dependencies: []
-  # List your role dependencies here, one per line.
-  # Be sure to remove the '[]' above if you add dependencies
-  # to this list.
+dependencies:
+- src: "https://github.com/mdklatt/ansible-tmpdir-role"
+  name: tmpdir
 
 galaxy_info:
   author: Michael Klatt
-  description: 
-  licese: MIT
+  description: Install essential Python packages.
+  license: MIT
   
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value

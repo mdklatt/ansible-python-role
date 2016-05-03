@@ -13,7 +13,7 @@ from os.path import join
 from shlex import split
 from shutil import copytree
 from subprocess import call
-from subprocess import check_output
+from subprocess import check_call
 
 import pytest
 
@@ -23,6 +23,7 @@ def install(tmpdir):
     """ Install the role in a temporary working directory.
 
     """
+    # TODO: Install the role using ansible-galaxy.
     pathobj = tmpdir.join("python")
     dirs = "defaults", "handlers", "meta", "tasks", "tests", "vars"
     root = dirname(dirname(abspath(__file__)))
@@ -31,6 +32,22 @@ def install(tmpdir):
     return pathobj.strpath
 
 
+@pytest.fixture
+def galaxy(install):
+    """ Install dependencies using ansible-galaxy.
+
+    """
+    # When a role is installed using ansible-galaxy, its dependencies (see
+    # meta/main.yml) will automatically be installed, but for testing the
+    # dependencies must be installed manually.
+    reqs = join(dirname(abspath(__file__)), "requirements.yml")
+    roles = join(install, "tests", "roles")
+    galaxy = "ansible-galaxy install -r {:s} -p {:s}".format(reqs, roles)
+    check_call(split(galaxy))
+    return
+
+
+@pytest.mark.usefixtures("galaxy")
 def test_role(install):
     """ Test the role syntax.
 
