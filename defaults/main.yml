@@ -1,3 +1,4 @@
 ## Defaults for the python role.
 ##
 python_debug: False
+python_local: "{{ ansible_user_dir }}/.local/bin"

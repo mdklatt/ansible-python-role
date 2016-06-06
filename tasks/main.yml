@@ -1,2 +1,31 @@
 ## Tasks for the python role.
 ##
+## This will install pip and virtualenv in the user's site-packages directory
+## System packages are not used because they make it difficult to keep these
+## utilities up-to-date.
+##
+## Standard versions of Python 2.7.9+ and 3.4+ include pip, but OS-specific
+## versions may not. For example, the version of Python 2.7.10 included with
+## OS X 10.11 ("El Capitan") does not.
+##
+- name: download pip installer
+  get_url:
+    url: https://bootstrap.pypa.io/get-pip.py
+    dest: "{{ tmpdir_path }}"
+
+- name: install pip
+  command: python get-pip.py --user
+  args:
+    chdir: "{{ tmpdir_path }}"
+
+- name: add local Python path to login file
+  lineinfile:
+    line: "export PATH={{ python_local }}:$PATH"
+    dest: "{{ ansible_user_dir }}/.bashrc"
+    state: present
+
+- name: install virtualenv
+  pip:
+    name: virtualenv
+    extra_args: "--user"
+    executable: "{{ python_local }}/pip"

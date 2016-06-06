@@ -10,25 +10,23 @@ tmpdir
 
 |travis.png|
 
-`Ansible`_ role to ....
+`Ansible`_ role to install essential Python packages. Additional packages
+should be deployed per-application in a `virtualenv` environment.
 
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should 
-be mentioned here. For instance, if the role uses the EC2 module, it may be a 
-good idea to mention in this section that the boto package is required.
+The target machine must have Python installed.
 
 
-Role Variables
---------------
+Dependencies
+------------
 
-A description of the settable variables for this role should go here, including 
-any variables that are in defaults/main.yml, vars/main.yml, and any variables 
-that can/should be set via parameters to the role. Any variables that are read 
-from other roles and/or the global scope (ie. hostvars, group vars, etc.) 
-should be mentioned here as well.
+..  _tmpdir: https://github.com/mdklatt/ansible-tmpdir-role
+
+* `tmpdir`_: temporary files are saved to `tmpdir_path` and automatically
+   removed
 
 
 Example Playbook
@@ -39,5 +37,4 @@ Example Playbook
     - hosts: all
       
       roles:
-      - role: {{ansible-python-role}}
-        {{ansible-python-role}}_debug: True
+      - role: python

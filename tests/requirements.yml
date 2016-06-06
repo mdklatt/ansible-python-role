@@ -8,3 +8,5 @@
 ##
 - src: "https://github.com/mdklatt/ansible-tmpdir-role"
   name: tmpdir
+  version: v0.1.0
+
