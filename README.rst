@@ -1,6 +1,7 @@
 ..  README for the python role.
 
-tmpdir 
+======
+python 
 ======
 ..  |travis.png| image:: https://travis-ci.org/mdklatt/ansible-python-role.png?branch=master
     :alt: Travis CI build status
@@ -15,26 +16,25 @@ should be deployed per-application in a `virtualenv` environment.
 
 
 Requirements
-------------
-
-The target machine must have Python installed.
+============
+The target machine must have Python 2.7 installed.
 
 
 Dependencies
-------------
+============
+- tmpdir: https://github.com/mdklatt/ansible-tmpdir-role
 
-..  _tmpdir: https://github.com/mdklatt/ansible-tmpdir-role
 
-* `tmpdir`_: temporary files are saved to `tmpdir_path` and automatically
-   removed
+Role Variables
+==============
+- ``python_local``: local binary directory; system-dependent
 
 
 Example Playbook
-----------------
-
+================
 ..  code::
 
     - hosts: all
       
       roles:
-      - role: python
+        - name: python
