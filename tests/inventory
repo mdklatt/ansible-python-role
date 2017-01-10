@@ -1,1 +1,1 @@
-localhost ansible_connection=local python_debug=True
+localhost ansible_connection=local
